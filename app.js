@@ -9,13 +9,15 @@ const app = express()
 app.use(bodyParser.json());
 
 // Import Routes
+const adminRoutes = require('./admin.js');
 const todosRoute = require('./todo/todo.route')
 
 // Route Middleware
+app.use('/admin', adminRoutes)
 app.use('/todos', todosRoute)
 
 app.get('/', (req, res) => {
-    res.send('home call')
+    res.send('hello world')
 })
 
 mongoose.connect(process.env.DB_CONNECTION,
