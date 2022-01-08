@@ -18,12 +18,10 @@ app.get('/', (req, res) => {
     res.send('home call')
 })
 
-console.log('db : ', process.env.DB_CONNECTION)
-
 mongoose.connect(process.env.DB_CONNECTION,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
         console.log('Db connected');
     });
 
-app.listen(8000)
+app.listen(process.env.PORT || 8000)
