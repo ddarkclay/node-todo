@@ -37,8 +37,8 @@ router.get('/:todoId', async (req, res) => {
 // Delete todo
 router.delete('/:todoId', async (req, res) => {
     try {
-        const todo = await Todo.remove({ message: "Todo delete successfully", data: { _id: req.params.todoId } })
-        res.status(200).json(todo)
+        const todo = await Todo.remove({ _id: req.params.todoId })
+        res.status(200).json({ message: "Todo delete successfully", data: { todo }})
     } catch (error) {
         res.status(500).json({ message: error })
     }
@@ -46,7 +46,7 @@ router.delete('/:todoId', async (req, res) => {
 
 
 // Update a post
-router.patch('/:todoId', async (req, res) => {
+router.put('/:todoId', async (req, res) => {
     try {
         const updatedTodo = await Todo.updateOne(
             { _id: req.params.todoId },
